@@ -17,21 +17,38 @@ public class Skladba {
    /** @pdOid 864942c9-372b-4a07-88c9-727b3688d5a3 */
    private String pot;
    /** @pdOid c2972de7-eeaf-4ce4-b4a6-2105d8aa58a5 */
-   private int cena;
+   private double cena;
    /** @pdOid eb5cbe9f-e0ff-4fe3-b07c-e0f979f6846b */
    private String tipSkladbe;
    private String Pot_slike;
-   
+   private String Naslov;
    /** @pdOid ae6ad0c7-ab30-462a-b7d3-f76c2a4b2c1c */
    public int preveriNaVoljo() {
       // TODO: implement
       return 0;
    }
-   
+
+   public Skladba(int id,int dolzina, String zvrst, String pot, double cena, String tip, String pot_s,String naslov){
+   idSkladbe = id;
+   dolzina = this.dolzina;
+   zvrst = this.zvrst;
+   pot = this.pot;
+   cena = this.cena;
+   tipSkladbe = tip;
+   Pot_slike = pot_s;
+   Naslov = naslov;
+   }
+
    /** @pdOid 9ec1e867-4551-412a-a433-9705d6be7057 */
    public int vrniPodatkeOSkladbi() {
       // TODO: implement
       return 0;
    }
 
+   public String vrniNaslov(){
+      return Naslov;
+   }
+   public String vrniPotSlike(){
+      return Pot_slike;
+   }
 }

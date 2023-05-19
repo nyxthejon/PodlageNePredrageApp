@@ -1,6 +1,7 @@
 package com.example.podlagenepredrageapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -32,7 +33,14 @@ public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.skladba_view, parent, false);
-        return new ViewHolder(view);
+        ViewHolder holders = new ViewHolder(view);
+        View.OnClickListener clickListener = v -> {
+            Intent intent = new Intent(parent.getContext(),PodatkiSkladbe.class);
+            intent.putExtra("skladba", data.get(holders.getLayoutPosition()));
+            parent.getContext().startActivity(intent);            };
+
+        view.setOnClickListener(clickListener);
+        return holders;
     }
 
     @Override

@@ -4,10 +4,11 @@
  * Purpose: Defines the Class Skladba
  ***********************************************************************/
 package com.example.podlagenepredrageapp;
+import java.io.Serializable;
 import java.util.*;
 
 /** @pdOid b83e4f26-e73f-4357-98be-5f50242e669b */
-public class Skladba {
+public class Skladba implements Serializable {
    /** @pdOid abf0afc1-8e28-49af-b260-ea5437bfed47 */
    private int idSkladbe;
    /** @pdOid 9b4c09cb-39ec-4b3e-a4ce-07ffe4537708 */

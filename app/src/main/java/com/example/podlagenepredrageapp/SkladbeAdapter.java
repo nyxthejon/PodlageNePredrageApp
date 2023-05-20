@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.DragAndDropPermissions;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,11 @@ public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.naslov.setText(data.get(position).vrniNaslov());
-
-
-
-
+        /*
+        double c = data.get(position).VrniCeno();
+        String ce = Double.toString(c);
+        holder.cena.setText(ce);*/
+        holder.cena.setText(data.get(position).VrniAvtorja());
     }
 
     @Override
@@ -59,11 +61,13 @@ public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView naslov;
+        TextView cena;
         ImageView im;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
              im = itemView.findViewById(R.id.slikaSkladbe);
+             cena = itemView.findViewById(R.id.Skladba_cena);
              naslov =  itemView.findViewById(R.id.imeskladbe);
 
         }

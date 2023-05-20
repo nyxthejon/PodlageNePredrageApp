@@ -3,12 +3,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="nazaj">
+    android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
 
     <LinearLayout
-        android:layout_width="422dp"
-        android:layout_height="706dp"
+        android:layout_width="419dp"
+        android:layout_height="161dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/Podatki_avtor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/Podatki_Cena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/Podatki_zvrst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/Nakup_Button"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_weight="1"
+            android:onClick="Pricni_Nakup"
+            android:text="Nakup" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="418dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="137dp"
+            android:layout_height="138dp"
+            android:layout_marginLeft="140dp"
+            android:scaleType="fitCenter"
+            android:textAlignment="textEnd"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="250dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            >
+
+
+            <androidx.cardview.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/testslika" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/naslov"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="36dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="412dp"
+        android:layout_height="293dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="408dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -16,18 +121,13 @@
         tools:context=".PodatkiSkladbe">
 
 
-        <TextView
-            android:id="@+id/naslov"
-            android:layout_width="424dp"
-            android:layout_height="296dp"
-            android:text="TextView" />
-
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="408dp"
+            android:layout_height="155dp"
             android:adjustViewBounds="true"
             android:maxHeight="250dp"
+
             android:scaleType="fitCenter"
             android:src="@drawable/slika"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:text="00:00"
                 android:textColor="@color/black"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold" />
 
             <SeekBar
                 android:id="@+id/seek_bar"
@@ -99,4 +199,16 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/nazaj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="nazaj_button"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

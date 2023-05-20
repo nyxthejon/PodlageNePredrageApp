@@ -28,4 +28,17 @@ public class Kupec {
       return 0;
    }
 
+   public String vrniImeinPriimek(){
+      return ime + " " + priimek;
+   }
+
+   public Kupec(int i,String im,String pri, String e, Number tel, String socialna){
+   id = i;
+   ime = im;
+   priimek = pri;
+   ePosta = e;
+   telefon = tel;
+   socialnaOmrezja = socialna;
+   }
+
 }

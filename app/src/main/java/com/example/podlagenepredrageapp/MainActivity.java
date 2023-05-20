@@ -17,14 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Skladba s = new Skladba(120,75,"Rap","pot",5.99,"Podlaga","testslika.png","Test1");
+        Skladba s = new Skladba(120,75,"Rap","pot",9.99,"Podlaga","testslika.png","Test1","Joeyy", 100.00,"Ni kupljen");
         ArrayList<Skladba> skladbe = new ArrayList<Skladba>();
 
         skladbe.add(s);
-        s = new Skladba(120,75,"Rap","pot",5.99,"Podlaga","potslike","Test2");
+        s = new Skladba(120,75,"Rap","pot",5.99,"Podlaga","potslike","Test2","Joeyy",150.00,"Najet");
         skladbe.add(s);
-        s = new Skladba(120,75,"Rap","pot",5.99,"Podlaga","potslike","Test3");
+        s = new Skladba(120,75,"Rap","pot",5.99,"Podlaga","potslike","Test3","Joeyy", 150.00,"Ekskluzivno kupljen");
         skladbe.add(s);
+
 
 
 

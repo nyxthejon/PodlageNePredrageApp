@@ -6,11 +6,15 @@ package com.example.podlagenepredrageapp; /*************************************
 import java.util.*;
 
 /** @pdOid d50003c6-1e09-41a8-8112-49b6e18397f8 */
-public class SvPlacilniSistem {
+public class SvPlacilniSistem_SIM {
    /** @pdOid 91539868-0e33-4079-8aa9-c0e224432312 */
-   public int izvediNakup() {
-      // TODO: implement
-      return 0;
+   public boolean izvediNakup() {
+
+      return true;
+   }
+
+   public boolean PreveriPodatke(){
+      return true;
    }
 
 }

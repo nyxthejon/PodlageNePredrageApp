@@ -8,62 +8,40 @@ package com.example.podlagenepredrageapp;
 
 import java.util.*;
 
-
-
-
 public class KNakupSkladbe {
-   /** @pdRoleInfo migr=no name=SvPlacilniSistem assc=association5 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public SvPlacilniSistem sv;
-   /** @pdRoleInfo migr=no name=Nakup assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public Nakup nakup;
-   
+
+   private Nakup n;
+   private SvPlacilniSistem_SIM sv;
    /** @pdOid dad1de1a-6db4-4c31-b7cc-d1af247387e6 */
-   public int vrniPodatkeNakupa() {
-      // TODO: implement
-      return 0;
+   public String vrniPodatkeNakupa(){
+      return n.vrniPodatkeNakupa();
    }
    
    /** @pdOid af122d29-f42d-413e-ba0b-54976ec2aa21 */
-   public int vrniNaVoljo() {
-      // TODO: implement
-      return 0;
+   public boolean vrniNaVoljo(){
+      return n.vrniNaVoljo();
    }
-   
    /** @pdOid 11f20895-9c1d-498d-b133-f3dfa9c0bb59 */
-   public int ustvariNakup() {
-      // TODO: implement
-      return 0;
+   public void ustvariNakup(Date datum, Double c, String s, String tip, Skladba sk,Kupec k) {
+         n = new Nakup();
+         n.ustvariNakup(datum,c,s,tip,sk,k);
+      }
+
+  public boolean IzvediNakup(){
+    SvPlacilniSistem_SIM Simulacija = new SvPlacilniSistem_SIM();
+    return Simulacija.izvediNakup();
+  }
+   public Double VrniCeno(){
+       return n.VrniCeno();
    }
-   
-   /** @pdOid e1bd4261-d6c0-4b82-8610-b7228b39afb4 */
-   public double izracunajCeno() {
-      // TODO: implement
-      return 0;
-   }
-   
    /** @pdOid 6d111426-1f9e-4162-903e-bdd76d416925 */
-   public int zakljuciNakup() {
-      // TODO: implement
+   public int zakljuciNakup(){
       return 0;
    }
-   
-   
-   /** @pdGenerated default getter */
-   public java.util.Collection getSvPlacilniSistem() {
-      if (sv == null)
-          sv = new SvPlacilniSistem();
-      return (Collection) sv;
+
+   public Skladba VrniSkladbo(){
+      return n.VrniSkladbo();
    }
-   /** @pdGenerated default getter */
-   public java.util.Collection getNakup() {
-      if (nakup == null)
-         nakup = new Nakup();
-      return (Collection) nakup;
-   }
-
-
-
-
 
 
 /*

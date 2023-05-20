@@ -23,12 +23,25 @@
 
     <TextView
         android:id="@+id/imeskladbe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="182dp"
+        android:layout_height="27dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="42sp"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/slikaSkladbe" />
+
+    <TextView
+        android:id="@+id/Skladba_cena"
+        android:layout_width="181dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="9dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imeskladbe" />
 </androidx.constraintlayout.widget.ConstraintLayout>

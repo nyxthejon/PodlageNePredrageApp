@@ -29,7 +29,7 @@
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/potrdiSlika"
             android:layout_width="match_parent"
             android:layout_height="179dp"
             app:srcCompat="@drawable/slika" />

@@ -6,61 +6,65 @@
     android:layout_height="match_parent">
 
 
+    <Button
+        android:id="@+id/Nakup_Button"
+        android:layout_width="411dp"
+        android:layout_height="50dp"
+        android:onClick="Pricni_Nakup"
+        android:text="Nakup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
 
     <LinearLayout
-        android:layout_width="419dp"
-        android:layout_height="161dp"
+        android:id="@+id/linearLayout6"
+        android:layout_width="412dp"
+        android:layout_height="74dp"
         android:layout_marginTop="12dp"
+        android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/Podatki_avtor"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/Podatki_Cena"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="TextView"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/Podatki_zvrst"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="TextView"
             android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/Nakup_Button"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_weight="1"
-            android:onClick="Pricni_Nakup"
-            android:text="Nakup" />
-
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="418dp"
+        android:layout_width="412dp"
         android:layout_height="211dp"
         android:layout_marginTop="40dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -86,7 +90,7 @@
                 app:cardCornerRadius="250dp">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ProfileSlikaProdajalca"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -97,8 +101,8 @@
 
         <TextView
             android:id="@+id/naslov"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_width="406dp"
+            android:layout_height="33dp"
             android:layout_marginTop="36dp"
             android:text="TextView"
             android:textAlignment="center"
@@ -110,19 +114,19 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="412dp"
-        android:layout_height="293dp"
+        android:layout_width="405dp"
+        android:layout_height="302dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="408dp"
+        android:layout_marginTop="4dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
         tools:context=".PodatkiSkladbe">
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/CoverSlike"
             android:layout_width="408dp"
             android:layout_height="155dp"
             android:adjustViewBounds="true"
@@ -202,13 +206,15 @@
 
     <Button
         android:id="@+id/nazaj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="101dp"
+        android:layout_height="41dp"
+        android:background="@drawable/square_button_background"
         android:onClick="nazaj_button"
-        android:text="Button"
+        android:text="Nazaj"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

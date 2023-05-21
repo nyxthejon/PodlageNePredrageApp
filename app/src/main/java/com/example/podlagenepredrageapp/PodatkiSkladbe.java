@@ -8,12 +8,17 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.podlagenepredrageapp.MejniRazredi.ZmUporabnikKupiSkladbo_;
+import com.example.podlagenepredrageapp.Razredi.Skladba;
+
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class PodatkiSkladbe  extends AppCompatActivity {
@@ -25,6 +30,9 @@ public class PodatkiSkladbe  extends AppCompatActivity {
     Handler handler = new Handler();
     Runnable runnable;
     Skladba s;
+    ImageView ProfilePic;
+    ArrayList<Skladba> kupljene;
+    String back;
 
 
     @Override
@@ -32,27 +40,37 @@ public class PodatkiSkladbe  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.podatkiskladbe);
 
-        /*
-        b.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(PodatkiSkladbe.this, MainActivity.class);
-                startActivity(intent);
-                }
 
-        });*/
-
+        //intent
         Intent intent = getIntent();
         s = (Skladba) intent.getSerializableExtra("skladba");
-        //System.out.println(title);
+        back = intent.getStringExtra("Back");
+        kupljene = (ArrayList<Skladba>) intent.getSerializableExtra("Kupljene");
+
+        //texts in slike
         TextView t = findViewById(R.id.naslov);
         t.setText(String.valueOf(s.vrniNaslov()));
         TextView Podatki_avtor = findViewById(R.id.Podatki_avtor);
         TextView Podatki_cena = findViewById(R.id.Podatki_Cena);
         TextView Podatki_zvrst = findViewById(R.id.Podatki_zvrst);
+        NastaviSliko();
         Podatki_avtor.setText("Produciral: " + s.VrniAvtorja());
         Podatki_cena.setText( "Cena najema: " + s.VrniCeno() + " Cena Ekskluzivnega nakupa: " + s.VrniCenoEksluzivno());
         Podatki_zvrst.setText("Spada pod zvrst: " + s.VrniZvrst());
+        Button nakup = findViewById(R.id.Nakup_Button);
 
+
+        //Preveri ce je kupljena
+        if(JeSkladbaKupljena(s,kupljene)){
+            nakup.setVisibility(View.GONE);
+            Podatki_cena.setVisibility(View.GONE);
+            System.out.println("je");
+        }
+        else{
+            nakup.setVisibility(View.VISIBLE);
+            Podatki_cena.setVisibility(View.VISIBLE);
+            System.out.println("Ni");
+        }
 
 
 
@@ -64,9 +82,9 @@ public class PodatkiSkladbe  extends AppCompatActivity {
         btPlay = findViewById(R.id.bt_play);
         btPause = findViewById(R.id.bt_pause);
         btForward = findViewById(R.id.bt_ff);
-
-        mediaPlayer = MediaPlayer.create(this,R.raw.song);
-
+        String fileName = s.VrniPot();
+        int resID = getResources().getIdentifier(fileName, "raw", getPackageName());
+        mediaPlayer = MediaPlayer.create(this, resID);
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -160,6 +178,36 @@ public class PodatkiSkladbe  extends AppCompatActivity {
                     TimeUnit.MILLISECONDS.toSeconds(duration) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
         }
 
+        //konec player
+
+
+
+
+        public void NastaviSliko(){
+        ProfilePic = findViewById(R.id.ProfileSlikaProdajalca);
+        String imageName;
+        if(s.VrniUsername().equals("Joeyy")){
+            imageName = "joeyy";
+
+        }else if(s.VrniUsername().equals("2hollis")){
+            imageName = "twohollis";
+        }else if(s.VrniUsername().equals("DestroyLone")){
+            imageName = "destroy";
+
+        }else{
+            imageName = "testslika";
+
+        }
+        int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        ProfilePic.setImageResource(resID);
+
+
+        ImageView cover = findViewById(R.id.CoverSlike);
+        String slika = s.vrniPotSlike();
+        int IdsLIKE = getResources().getIdentifier(slika, "drawable", getPackageName());
+        cover.setImageResource(IdsLIKE);
+        }
+
 
     public void Pricni_Nakup(View view) {
         if(btPause.getVisibility() != View.GONE){
@@ -173,8 +221,9 @@ public class PodatkiSkladbe  extends AppCompatActivity {
                 .setPositiveButton("Ekskluziven Nakup", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent placilo = new Intent(PodatkiSkladbe.this,ZmUporabnikKupiSkladbo_.class);
+                        Intent placilo = new Intent(PodatkiSkladbe.this, ZmUporabnikKupiSkladbo_.class);
                         placilo.putExtra("skladba_placilo", s);
+                        placilo.putExtra("Kupljeno",kupljene);
                         placilo.putExtra("tip","Ekskluzivno");
                         startActivity(placilo);
                     }
@@ -184,6 +233,7 @@ public class PodatkiSkladbe  extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent placilo = new Intent(PodatkiSkladbe.this,ZmUporabnikKupiSkladbo_.class);
                         placilo.putExtra("skladba_placilo", s);
+                        placilo.putExtra("Kupljeno",kupljene);
                         placilo.putExtra("tip","Najem");
                         startActivity(placilo);
                     }
@@ -198,8 +248,26 @@ public class PodatkiSkladbe  extends AppCompatActivity {
                 .show();
     }
 
+
+
     public void nazaj_button(View view) {
-        Intent intent = new Intent(PodatkiSkladbe.this, MainActivity.class);
+        Intent intent;
+        if(back.equals("domov"))
+         intent = new Intent(PodatkiSkladbe.this, MainActivity.class);
+        else {
+            intent = new Intent(PodatkiSkladbe.this, activity_profil.class);
+        }
+        intent.putExtra("kupljeno",kupljene);
         startActivity(intent);
+    }
+
+
+    public boolean JeSkladbaKupljena(Skladba target, ArrayList<Skladba> Skladbe) {
+        for (Skladba element : Skladbe) {
+            if (element.equals(target)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

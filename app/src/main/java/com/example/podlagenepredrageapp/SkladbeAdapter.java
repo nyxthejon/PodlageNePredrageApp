@@ -2,11 +2,6 @@ package com.example.podlagenepredrageapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.view.DragAndDropPermissions;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +11,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
+import com.example.podlagenepredrageapp.Razredi.Skladba;
+
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHolder> {
 
     private ArrayList<Skladba> data;
     private Context context;
-
-    public SkladbeAdapter(ArrayList<Skladba> data) {
+    private ArrayList<Skladba> kupljene;
+    private String backKam;
+    public SkladbeAdapter(ArrayList<Skladba> data,ArrayList<Skladba> kupljene, Context context) {
+        if(data == null){
+            this.data = kupljene;
+            this.kupljene = kupljene;
+            this.backKam = "profil";
+        }else{
         this.data = data;
+        this.kupljene = kupljene;
+        this.backKam = "domov";
+        }
+        this.context = context;
     }
 
     @NonNull
@@ -38,7 +43,10 @@ public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHold
         View.OnClickListener clickListener = v -> {
             Intent intent = new Intent(parent.getContext(),PodatkiSkladbe.class);
             intent.putExtra("skladba", data.get(holders.getLayoutPosition()));
-            parent.getContext().startActivity(intent);            };
+            intent.putExtra("Back",backKam);
+            intent.putExtra("Kupljene",kupljene);
+            parent.getContext().startActivity(intent);
+        };
 
         view.setOnClickListener(clickListener);
         return holders;
@@ -47,10 +55,9 @@ public class SkladbeAdapter extends RecyclerView.Adapter<SkladbeAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.naslov.setText(data.get(position).vrniNaslov());
-        /*
-        double c = data.get(position).VrniCeno();
-        String ce = Double.toString(c);
-        holder.cena.setText(ce);*/
+        String imageName = data.get(position).vrniPotSlike();
+        int resID = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        holder.im.setImageResource(resID);
         holder.cena.setText(data.get(position).VrniAvtorja());
     }
 
